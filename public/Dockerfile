@@ -1,17 +1,20 @@
-# استفاده از تصویر پایه Node.js
+# Use official Node.js image as base
 FROM node:16
 
-# تنظیم دایرکتوری کاری
-WORKDIR /app
+# Set working directory in the container
+WORKDIR /usr/src/app
 
-# کپی کردن تمام فایل‌ها به داخل کانتینر
-COPY . .
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-# نصب وابستگی‌ها
+# Install dependencies
 RUN npm install
 
-# باز کردن پورت 3000 (یا هر پورتی که برنامه شما استفاده می‌کند)
+# Copy the rest of the project files
+COPY . .
+
+# Expose port
 EXPOSE 3000
 
-# اجرای پروژه با استفاده از npm
+# Run the app
 CMD ["npm", "start"]
