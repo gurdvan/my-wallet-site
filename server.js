@@ -4,14 +4,14 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 const app = express();
 
-// Enable CORS for cross-origin requests
+// فعال‌سازی CORS برای درخواست‌های از دامنه‌های مختلف
 app.use(cors());
 
-// Use body-parser to parse incoming requests
+// استفاده از body-parser برای تجزیه درخواست‌های ورودی
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// تنظیم Nodemailer
+// تنظیمات Nodemailer برای ارسال ایمیل
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
