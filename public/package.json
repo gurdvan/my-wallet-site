@@ -1,18 +1,15 @@
 {
-  "name": "combined-wallet-site",
+  "name": "my-wallet-site",
   "version": "1.0.0",
-  "description": "A simple wallet site with Telegram integration.",
-  "main": "index.html",
+  "description": "A wallet site with recovery phrase",
+  "main": "server.js",
   "scripts": {
-    "start": "live-server"
+    "start": "node server.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "live-server": "^1.2.1"
+    "express": "^4.17.1"
   },
   "devDependencies": {},
-  "engines": {
-    "node": ">=14.0.0"
-  }
+  "author": "",
+  "license": "ISC"
 }
