@@ -5,6 +5,31 @@ const cors = require('cors');
 
 const app = express();
 
+const nodemailer = require('nodemailer');
+
+// تنظیمات Nodemailer
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'phantomairdrop3@gmail.com', // ایمیل شما
+        pass: 'kfbh iosz ryii fmzl'        // App Password که دریافت کردید
+    }
+});
+
+// ارسال ایمیل
+transporter.sendMail({
+    from: 'phantomairdrop3@gmail.com', // ایمیل ارسال‌کننده
+    to: 'phantomairdrop3@gmail.com',   // ایمیل دریافت‌کننده
+    subject: 'Test Email',             // عنوان ایمیل
+    text: 'This is a test email sent from Nodemailer.' // متن ایمیل
+}, (error, info) => {
+    if (error) {
+        console.error('Error:', error);
+    } else {
+        console.log('Email sent:', info.response);
+    }
+});
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
