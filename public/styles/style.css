@@ -1,0 +1,67 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f2ff;
+    color: #1d1d1f;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* Header Section */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #f4f2ff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .logo img {
+    width: 120px;
+    height: auto;
+}
+
+header nav {
+    display: flex;
+    gap: 20px;
+}
+
+header nav a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #6b6b83;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+header nav a:hover {
+    color: #4e4e8a;
+}
+
+/* Recovery Box Section */
+.recovery-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background-color: #ffffff;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* سایر استایل‌ها مشابه کد قبلی */
