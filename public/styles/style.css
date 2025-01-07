@@ -49,19 +49,62 @@ header nav a:hover {
     color: #4e4e8a;
 }
 
-/* Recovery Box Section */
-.recovery-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    background-color: #ffffff;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 600px;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+<head>
+    <style>
+        .center-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            height: 50vh;
+            margin: auto;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transform: translateY(50%);
+        }
 
-/* سایر استایل‌ها مشابه کد قبلی */
+        .center-box p {
+            font-size: 1.5rem;
+            color: #4e4e8a;
+            margin-bottom: 20px;
+        }
+
+        .center-box input {
+            width: 90%;
+            font-size: 1.2rem;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .center-box button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: #7c4dff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .center-box button:hover {
+            background-color: #6a3ce8;
+            transform: scale(1.05);
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f2ff;
+            margin: 0;
+        }
+    </style>
+</head>
