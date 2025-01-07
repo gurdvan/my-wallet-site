@@ -36,10 +36,6 @@ const ftmChart = new Chart(ctx, {
     },
     options: {
         responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
+        maintainAspectRatio: false, // جلوگیری از نسبت ثابت
     }
 });
